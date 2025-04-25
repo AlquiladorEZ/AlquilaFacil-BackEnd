@@ -1,6 +1,4 @@
 /myapp/
-bin/
-obj/
 *.pdb
 *.dll
 *.deps.json
