@@ -5,8 +5,8 @@ namespace AlquilaFacilPlatform.Booking.Application.OutBoundService;
 
 public class SubscriptionInfoExternalService(ISubscriptionContextFacade subscriptionContextFacade) : ISubscriptionInfoExternalService
 {
-    public async Task<IEnumerable<Subscription>> GetSubscriptionByUsersId(List<int> usersId)
+    public async Task<IEnumerable<Subscription>> GetSubscriptionByUserIdsList(List<int> userIdsList)
     {
-        return await subscriptionContextFacade.GetSubscriptionByUsersId(usersId);
+        return await subscriptionContextFacade.GetSubscriptionByUserIdsList(userIdsList);
     }
 }

@@ -9,7 +9,10 @@ namespace AlquilaFacilPlatform.Booking.Application.CommandServices;
 
 public class ReservationCommandService(
  IUserReservationExternalService userReservationExternalService,
- IReservationLocalExternalService reservationLocalExternalService, IReservationRepository reservationRepository,IUnitOfWork unitOfWork) : IReservationCommandService
+ IReservationLocalExternalService reservationLocalExternalService, 
+ INotificationReservationExternalService notificationReservationExternalService,
+ IReservationRepository reservationRepository,
+ IUnitOfWork unitOfWork) : IReservationCommandService
 {
  public async Task<Reservation> Handle(CreateReservationCommand reservation)
  {
@@ -41,12 +44,20 @@ public class ReservationCommandService(
      {
             throw new BadHttpRequestException("User is the owner of the local, he cannot make a reservation");
      }
+     
+     
 
      var reservationCreated = new Reservation(reservation);
      await reservationRepository.AddAsync(reservationCreated);
      await unitOfWork.CompleteAsync();
+     
+     var ownerId = await reservationLocalExternalService.GetOwnerIdByLocalId(reservation.LocalId);
+     await notificationReservationExternalService.CreateNotification(
+         "Nueva reservación",
+         $"Tienes una nueva reservación desde el {reservation.StartDate:dd/MM/yyyy} a las {reservation.StartDate:HH:mm} hasta el {reservation.EndDate:dd/MM/yyyy} a las {reservation.EndDate:HH:mm}. Verifica los datos del voucher de pago para corroborar que el depósito se realizó correctamente",
+         ownerId
+     );
      return reservationCreated;
-
  }
 
  public async Task<Reservation> Handle(UpdateReservationDateCommand reservation)

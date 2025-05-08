@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj": {}
+    "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj": {
+    "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj",
         "projectName": "AlquilaFacilPlatform.Tests",
-        "projectPath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj",
+        "projectPath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform.Tests\\AlquilaFacilPlatform.Tests.csproj",
         "packagesPath": "C:\\Users\\Chizo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Chizo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {
-                "projectPath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj"
+              "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {
+                "projectPath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj"
               }
             }
           }
@@ -106,14 +106,14 @@
         }
       }
     },
-    "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {
+    "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
+        "projectUniqueName": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
         "projectName": "AlquilaFacilPlatform",
-        "projectPath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
+        "projectPath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
         "packagesPath": "C:\\Users\\Chizo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\obj\\",
+        "outputPath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Chizo\\AppData\\Roaming\\NuGet\\NuGet.Config",

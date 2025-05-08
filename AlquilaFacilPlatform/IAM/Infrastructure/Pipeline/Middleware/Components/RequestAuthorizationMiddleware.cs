@@ -56,10 +56,19 @@ public class RequestAuthorizationMiddleware(RequestDelegate next)
 
         // get user by id
         var getUserByIdQuery = new GetUserByIdQuery(userId.Value);
+        
+        var user = await userQueryService.Handle(getUserByIdQuery);
+        
+        // verify if user has the required role
+        var authorizeRole = context.Request.HttpContext.GetEndpoint()!.Metadata
+            .OfType<AuthorizeRoleAttribute>()
+            .FirstOrDefault();
+        if(authorizeRole != null && user?.RoleId != (int)authorizeRole.RequiredRole)
+        {
+            throw new Exception("User does not have the required role");
+        }
 
         // set user in HttpContext.Items["User"]
-
-        var user = await userQueryService.Handle(getUserByIdQuery);
         Console.WriteLine("Successful authorization. Updating Context...");
         context.Items["User"] = user;
         Console.WriteLine("Continuing with Middleware Pipeline");

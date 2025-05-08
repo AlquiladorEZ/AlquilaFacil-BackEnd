@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9/T90JPfIsf7mRwaOrAPau3j1kD5LaMA9oKLZ0iXF8rCSVPyje+OuVD11JAUdA7wp7VXANrh5XysY+yZtAIOQA==",
+  "dgSpecHash": "5ESddc3jEa++9kZSfsZwUaX7qRGNWHPntShn0GB4d48wr5s+wo5V7M1Yn3QxqS87wFWX7ZT+RdDEBwcj7ZtLlA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
+  "projectFilePath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Chizo\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Chizo\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",

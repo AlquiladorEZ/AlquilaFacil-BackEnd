@@ -1,5 +1,4 @@
 using AlquilaFacilPlatform.Booking.Domain.Model.Aggregates;
-using AlquilaFacilPlatform.Contacts.Domain.Model.Aggregates;
 using AlquilaFacilPlatform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using AlquilaFacilPlatform.Subscriptions.Domain.Model.Aggregates;
 using AlquilaFacilPlatform.Subscriptions.Domain.Model.Entities;
@@ -33,12 +32,13 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Plan>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Plan>().Property(p => p.Name).IsRequired();
         builder.Entity<Plan>().Property(p => p.Service).IsRequired();
-        builder.Entity<Plan>().Property(p => p.Price).IsRequired() ;
+        builder.Entity<Plan>().Property(p => p.Price).IsRequired();
 
         builder.Entity<Plan>().HasMany<Subscription>().WithOne().HasForeignKey(s => s.PlanId);
         
         builder.Entity<Subscription>().HasKey(s => s.Id);
         builder.Entity<Subscription>().Property(s => s.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Subscription>().Property(s => s.VoucherImageUrl).IsRequired();
         builder.Entity<Subscription>().HasOne<SubscriptionStatus>().WithMany()
             .HasForeignKey(s => s.SubscriptionStatusId);
         
@@ -175,43 +175,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
                 e.Property(a => a.BirthDate).HasColumnName("BirthDate");
             });
         
-        builder.Entity<Profile>().Property(p => p.PhotoUrl).IsRequired();
         builder.Entity<Profile>().HasOne<User>().WithOne().HasForeignKey<Profile>(p => p.UserId);
-        
-        
-        // Contact Context
-        
-        builder.Entity<Contact>().HasKey(p => p.Id);
-        builder.Entity<Contact>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Contact>().OwnsOne(c => c.EAdress,
-            n =>
-            {
-                n.WithOwner().HasForeignKey("Id");
-                n.Property(c => c.EmailAdress).HasColumnName("EmailAdress");
-            });
-        builder.Entity<Contact>().OwnsOne(p => p.CMessage,
-            e =>
-            {
-                e.WithOwner().HasForeignKey("Id");
-                e.Property(a => a.ContactMessage).HasColumnName("ContactMessage");
-            });
-        builder.Entity<Contact>().OwnsOne(p => p.FullName,
-            a =>
-            {
-                a.WithOwner().HasForeignKey("Id");
-                a.Property(s => s.Name).HasColumnName("Name");
-                a.Property(s => s.Lastname).HasColumnName("Lastname");
-
-            });
-        builder.Entity<Contact>().OwnsOne(p => p.NPhone,
-            h =>
-            {
-                h.WithOwner().HasForeignKey("Id");
-                h.Property(g => g.PhoneNumber).HasColumnName("PhoneNumber");
-
-            });
-
-        builder.Entity<Contact>().HasOne<User>().WithMany().HasForeignKey(c => c.UserId);
         
         
         //IAM Context
@@ -232,6 +196,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Reservation>().Property(r => r.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Reservation>().Property(r => r.StartDate).IsRequired();
         builder.Entity<Reservation>().Property(r => r.EndDate).IsRequired();
+        builder.Entity<Reservation>().Property(r => r.VoucherImageUrl).IsRequired();
         builder.Entity<User>().HasMany<Reservation>().WithOne().HasForeignKey(r => r.UserId);
         builder.Entity<Local>().HasMany<Reservation>().WithOne().HasForeignKey(r => r.LocalId);
 

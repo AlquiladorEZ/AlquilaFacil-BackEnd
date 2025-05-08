@@ -12,5 +12,5 @@ public interface ILocalRepository : IBaseRepository<Local>
    
    Task<IEnumerable<Local>> GetLocalsByUserIdAsync(int userId);
    Task<bool> IsOwnerAsync(int userId, int localId);
-   
+   Task<int?> GetLocalOwnerIdByLocalId(int localId);
 }

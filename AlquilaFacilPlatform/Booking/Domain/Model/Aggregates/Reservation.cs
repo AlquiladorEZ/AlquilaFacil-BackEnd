@@ -9,8 +9,8 @@ public partial class Reservation
     public DateTime EndDate { get; set; }
     public int UserId { get; }
     public int LocalId { get; }
-    
-    
+    public float Price { get; set;}
+    public string VoucherImageUrl { get; set; }
 }
 
 public partial class Reservation
@@ -19,6 +19,7 @@ public partial class Reservation
     {
         UserId = 0;
         LocalId = 0;
+        VoucherImageUrl = "";
     }
     
     public Reservation(CreateReservationCommand command)
@@ -27,6 +28,8 @@ public partial class Reservation
         EndDate = command.EndDate;
         UserId = command.UserId;
         LocalId = command.LocalId;
+        Price = command.Price;
+        VoucherImageUrl = command.VoucherImageUrl;
     }
     
     public void UpdateDate(UpdateReservationDateCommand command)

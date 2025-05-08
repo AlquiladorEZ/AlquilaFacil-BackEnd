@@ -37,4 +37,14 @@ public class LocalQueryService(ILocalRepository localRepository) : ILocalQuerySe
     {
         return await localRepository.IsOwnerAsync(query.UserId, query.LocalId);
     }
+    
+    public async Task<int> Handle(GetLocalOwnerIdByLocalId query)
+    {
+        var ownerId = await localRepository.GetLocalOwnerIdByLocalId(query.LocalId);
+        if (ownerId == null)
+        {
+            throw new Exception("Owner not found");
+        }
+        return (int)ownerId;
+    }
 }

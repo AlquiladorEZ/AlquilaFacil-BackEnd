@@ -39,4 +39,11 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="CoreBehaviourDrivenDevelopment\" />
+      <Folder Include="CoreIntegrationTests\" />
+      <Folder Include="CoreSystemTests\" />
+      <Folder Include="UnitTests\" />
+    </ItemGroup>
+
 </Project>

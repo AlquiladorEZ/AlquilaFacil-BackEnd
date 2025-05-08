@@ -35,7 +35,7 @@ public class UserRepository (AppDbContext context) : BaseRepository<User>(contex
      * <param name="username">The username to search</param>
      * <returns>True if the user exists, false otherwise</returns>
      */
-    public bool ExistsByUsername(string username)
+    public async Task<bool> ExistsByUsername(string username)
     {
         return Context.Set<User>().Any(user => user.Username.Equals(username));
     }

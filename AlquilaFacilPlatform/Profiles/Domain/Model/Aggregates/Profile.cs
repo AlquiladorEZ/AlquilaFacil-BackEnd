@@ -13,7 +13,8 @@ public partial class Profile
         PhoneN = new Phone();
         DocumentN = new DocumentNumber();
         UserId = 0;
-        PhotoUrl = string.Empty;
+        BankAccountNumber = "";
+        InterbankAccountNumber = "";
     }
     
     public Profile(CreateProfileCommand command)
@@ -23,7 +24,8 @@ public partial class Profile
         PhoneN = new Phone(command.Phone);
         DocumentN = new DocumentNumber(command.DocumentNumber);
         UserId = command.UserId;
-        PhotoUrl = command.PhotoUrl;
+        BankAccountNumber = "";
+        InterbankAccountNumber = "";
     }
     
     public void Update(UpdateProfileCommand command)
@@ -32,26 +34,21 @@ public partial class Profile
         Birth = new DateOfBirth(command.DateOfBirth);
         PhoneN = new Phone(command.Phone);
         DocumentN = new DocumentNumber(command.DocumentNumber);
-        PhotoUrl = command.PhotoUrl;
+        BankAccountNumber = command.BankAccountNumber;
+        InterbankAccountNumber = command.InterbankAccountNumber;
     }
 
     public int Id { get; }
-
-    public string PhotoUrl { get; set; }
     public PersonName Name { get; private set; }
     public DateOfBirth Birth { get; private set; }
     public Phone PhoneN { get; private set; }
     public DocumentNumber DocumentN { get; private set; }
-    
-
-    //public User User { get; internal set; }
-    //public int UserId { get; internal set; }
+    public string BankAccountNumber { get; private set; }         
+    public string InterbankAccountNumber { get; private set; } 
     
     public int UserId { get; set; }
-
     public string FullName => Name.FullName;
     public string BirthDate => Birth.BirthDate;
     public string PhoneNumber => PhoneN.PhoneNumber;
     public string NumberDocument => DocumentN.NumberDocument;
-    
 }

@@ -19,4 +19,9 @@ public class ReservationLocalExternalService(ILocalsContextFacade localsContextF
     {
         return await localsContextFacade.IsLocalOwner(userId, localId);
     }
+    
+    public async Task<int> GetOwnerIdByLocalId(int localId)
+    {
+        return await localsContextFacade.GetLocalOwnerIdByLocalId(localId);
+    }
 }

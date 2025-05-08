@@ -12,19 +12,25 @@ public partial class Subscription
     
     public int SubscriptionStatusId { get; set; }
     public int PlanId { get; set; }
+    public string VoucherImageUrl { get; set; }
 
     public Subscription()
     {
-        PlanId = 0;
         UserId = 0;
+        PlanId = 0;
+        VoucherImageUrl = "";
     }
 
     public Subscription(CreateSubscriptionCommand command)
     {
         UserId = command.UserId;
         PlanId = command.PlanId;
-        SubscriptionStatusId = 2;
+        VoucherImageUrl = command.VoucherImageUrl;
+        SubscriptionStatusId = (int)ESubscriptionStatus.Pending;
     }
     
-    
+    public void ActiveSubscriptionStatus()
+    {
+        SubscriptionStatusId = (int)ESubscriptionStatus.Active;
+    }
 }
