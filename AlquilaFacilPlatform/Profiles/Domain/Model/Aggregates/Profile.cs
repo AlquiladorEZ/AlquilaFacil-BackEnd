@@ -38,7 +38,7 @@ public partial class Profile
         InterbankAccountNumber = command.InterbankAccountNumber;
     }
 
-    public int Id { get; }
+    public int Id { get; set; }
     public PersonName Name { get; private set; }
     public DateOfBirth Birth { get; private set; }
     public Phone PhoneN { get; private set; }

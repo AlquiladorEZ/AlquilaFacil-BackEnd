@@ -70,9 +70,7 @@ public class UserCommandService(
             var detailedMessage = e.InnerException?.Message ?? e.Message;
             throw new Exception($"An error occurred while creating user: {detailedMessage}", e);
         }
-
-
-
+        
         return user;
     }
 

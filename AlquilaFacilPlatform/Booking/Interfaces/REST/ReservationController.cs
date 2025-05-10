@@ -13,7 +13,6 @@ namespace AlquilaFacilPlatform.Booking.Interfaces.REST;
 [Produces(MediaTypeNames.Application.Json)]
 public class ReservationController(IReservationCommandService reservationCommandService, IReservationQueryService reservationQueryService) : ControllerBase
 {
-
     [HttpPost]
     public async Task<IActionResult> CreateReservationAsync([FromBody]CreateReservationResource resource)
     {

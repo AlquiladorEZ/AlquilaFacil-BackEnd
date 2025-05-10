@@ -38,6 +38,7 @@ public class UsersController(
      * <param name="userId">The user id</param>
      * <returns>The user resource</returns>
      */
+    [AuthorizeRole(EUserRoles.Admin)]
     [HttpGet("{userId:int}")]
     public async Task<IActionResult> GetUserById(int userId)
     {

@@ -13,7 +13,7 @@ namespace AlquilaFacilPlatform.IAM.Domain.Model.Aggregates
             RoleId = (int)EUserRoles.User;  // Valor predeterminado para un usuario normal.
         }
 
-        public int Id { get; }
+        public int Id { get; set; }
         public string Username { get; private set; }
         public string Email { get; set; }
         public int RoleId { get; set; }

@@ -6,7 +6,7 @@ namespace AlquilaFacilPlatform.Subscriptions.Domain.Model.Aggregates;
 
 public partial class Subscription
 {
-    public int Id { get; }
+    public int Id { get; set; }
     public int UserId { get; set; }
     
     public int SubscriptionStatusId { get; set; }
