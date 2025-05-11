@@ -26,4 +26,5 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
+      run: |
+        dotnet test AlquilaFacilPlatform.Tests/**/*Tests.cs --no-restore --verbosity normal
