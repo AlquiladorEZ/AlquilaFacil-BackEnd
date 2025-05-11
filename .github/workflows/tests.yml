@@ -17,12 +17,18 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.0.x'  # Ajusta si usas otra versión
+        dotnet-version: '8.0.x'
 
-    - name: Restore dependencies
+    - name: Restore dependencies (solución completa)
       run: dotnet restore
 
-    - name: Build
+    - name: Restore CoreEntitiesUnitTests
+      run: dotnet restore AlquilaFacilPlatform.Tests/CoreEntitiesUnitTests/CoreEntitiesUnitTests.csproj
+
+    - name: Restore CoreIntegrationTests
+      run: dotnet restore AlquilaFacilPlatform.Tests/CoreIntegrationTests/CoreIntegrationTests.csproj
+
+    - name: Build all projects
       run: dotnet build --no-restore
 
     - name: Run CoreEntitiesUnitTests
