@@ -30,13 +30,4 @@
       <ProjectReference Include="..\AlquilaFacilPlatform\AlquilaFacilPlatform.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="AcceptanceTests\Features\User.feature.cs">
-        <DependentUpon>User.feature</DependentUpon>
-      </Compile>
-      <Compile Update="AcceptanceTests\Features\Profile.feature.cs">
-        <DependentUpon>Profile.feature</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
 </Project>
