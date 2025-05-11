@@ -25,6 +25,8 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-    - name: Run tests
-      run: |
-        dotnet test AlquilaFacilPlatform.Tests/**/*Tests.cs --no-restore --verbosity normal
+    - name: Run CoreEntitiesUnitTests
+      run: dotnet test AlquilaFacilPlatform.Tests/CoreEntitiesUnitTests/CoreEntitiesUnitTests.csproj --no-restore --verbosity normal
+
+    - name: Run CoreIntegrationTests
+      run: dotnet test AlquilaFacilPlatform.Tests/CoreIntegrationTests/CoreIntegrationTests.csproj --no-restore --verbosity normal

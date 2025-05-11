@@ -27,12 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AlquilaFacilPlatform\AlquilaFacilPlatform.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="CoreEntitiesUnitTests\CoreEntitiesUnitTests.csproj" />
-      <Content Include="CoreIntegrationTests\CoreIntegrationTests.csproj" />
+        <ProjectReference Include="..\..\AlquilaFacilPlatform\AlquilaFacilPlatform.csproj" />
     </ItemGroup>
 
 </Project>
