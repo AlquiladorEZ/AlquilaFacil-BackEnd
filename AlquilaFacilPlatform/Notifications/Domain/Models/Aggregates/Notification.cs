@@ -4,7 +4,7 @@ namespace AlquilaFacilPlatform.Notifications.Domain.Models.Aggregates;
 
 public partial class Notification
 {
-    public int Id { get; }
+    public int Id { get; set; }
     public string Title { get; }
     public string Description { get; }
     public int UserId { get; }

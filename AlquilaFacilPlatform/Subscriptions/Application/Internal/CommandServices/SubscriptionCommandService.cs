@@ -32,15 +32,15 @@ public class SubscriptionCommandService(ISubscriptionRepository subscriptionRepo
         return subscription;
     }
 
-    public async Task<Subscription?> Handle(UpdateSubscriptionStatusCommand command)
+    public async Task<Subscription?> Handle(ActiveSubscriptionStatusCommand command)
     {
-        var subscription = await subscriptionRepository.FindByIdAsync(command.Id);
-        var subscriptionStatus = await subscriptionStatusRepository.FindByIdAsync(command.StatusId);
-        if ( subscription == null || subscriptionStatus == null)
+        var subscription = await subscriptionRepository.FindByIdAsync(command.SubscriptionId);
+        if (subscription == null)
         {
-            throw new Exception("Subscription or Status not found");
+            throw new Exception("Subscription not found");
         }
-        subscription.SubscriptionStatusId = subscriptionStatus.Id;
+        subscription.ActiveSubscriptionStatus();
+        subscriptionRepository.Update(subscription);
         await unitOfWork.CompleteAsync();
         return subscription;
     }

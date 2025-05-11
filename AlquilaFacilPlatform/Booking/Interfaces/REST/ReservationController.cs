@@ -11,9 +11,8 @@ namespace AlquilaFacilPlatform.Booking.Interfaces.REST;
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
-public class ReservationController(IReservationCommandService reservationCommandService, IReservationQueryService reservationQueryService, ISubscriptionInfoExternalService subscriptionInfoExternalService) : ControllerBase
+public class ReservationController(IReservationCommandService reservationCommandService, IReservationQueryService reservationQueryService) : ControllerBase
 {
-
     [HttpPost]
     public async Task<IActionResult> CreateReservationAsync([FromBody]CreateReservationResource resource)
     {
@@ -55,40 +54,10 @@ public class ReservationController(IReservationCommandService reservationCommand
     public async Task<IActionResult> GetReservationUserDetailsAsync(int userId)
     {
         var query = new GetReservationsByOwnerIdQuery(userId);
-        var locals = new List<LocalReservationResource>();
-
         var reservations = await reservationQueryService.GetReservationsByOwnerIdAsync(query);
-        if (reservations == null || !reservations.Any())
-        {
-            return NotFound("Reservations not found for the given user ID.");
-        }
-
-        var subscriptions = await subscriptionInfoExternalService.GetSubscriptionByUsersId(reservations.Select(r => r.UserId).Distinct().ToList());
-        var subscriptionDict = subscriptions
-            .GroupBy(s => s.UserId)
-            .ToDictionary(g => g.Key, g => g.First());
-
-        foreach (var reservation in reservations)
-        {
-            subscriptionDict.TryGetValue(reservation.UserId, out var subscription);
-            var localReservationResource = new LocalReservationResource(
-                reservation.Id,
-                reservation.StartDate,
-                reservation.EndDate,
-                reservation.UserId,
-                reservation.LocalId,
-                subscription?.PlanId == 1
-            );
-            locals.Add(localReservationResource);
-        }
-
-        var reservationDetailsResource = new ReservationDetailsResource(locals);
+        var reservationDetailsResource = new ReservationDetailsResource(reservations);
         return Ok(reservationDetailsResource);
     }
-
-
-
-
 
     [HttpGet("by-start-date/{startDate}")]
     public async Task<IActionResult> GetReservationByStartDateAsync(DateTime startDate)

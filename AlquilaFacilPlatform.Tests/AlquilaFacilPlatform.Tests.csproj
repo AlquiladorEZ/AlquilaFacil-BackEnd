@@ -31,12 +31,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="AcceptanceTests\Features\User.feature.cs">
-        <DependentUpon>User.feature</DependentUpon>
-      </Compile>
-      <Compile Update="AcceptanceTests\Features\Profile.feature.cs">
-        <DependentUpon>Profile.feature</DependentUpon>
-      </Compile>
+      <Content Include="CoreEntitiesUnitTests\CoreEntitiesUnitTests.csproj" />
+      <Content Include="CoreIntegrationTests\CoreIntegrationTests.csproj" />
     </ItemGroup>
 
 </Project>

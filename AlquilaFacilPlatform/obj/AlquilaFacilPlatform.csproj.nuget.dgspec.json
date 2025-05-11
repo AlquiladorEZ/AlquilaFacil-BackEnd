@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {}
+    "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {
+    "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
+        "projectUniqueName": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
         "projectName": "AlquilaFacilPlatform",
-        "projectPath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
+        "projectPath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\AlquilaFacilPlatform.csproj",
         "packagesPath": "C:\\Users\\Chizo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Chizo\\OneDrive - Universidad Peruana de Ciencias\\Ciclo 7\\Diseño de Experimentos de Ingeniería de Software\\DEIS_AlquilaFacil\\AlquilaFacil-Backend-main\\AlquilaFacilPlatform\\obj\\",
+        "outputPath": "C:\\Users\\Chizo\\Videos\\Diseno\\AlquilaFacil-BackEnd\\AlquilaFacilPlatform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Chizo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -35,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {

@@ -4,7 +4,7 @@ namespace AlquilaFacilPlatform.Locals.Domain.Model.Aggregates;
 
 public partial class Report
 {
-    public int Id { get; }
+    public int Id { get; set; }
     public int LocalId { get; set; }
     public string Title { get; set; }
     public int UserId { get; set; }

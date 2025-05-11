@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Reflection;
 using AlquilaFacilPlatform.Locals.Domain.Model.Entities;
 using AlquilaFacilPlatform.Locals.Domain.Model.ValueObjects;
 using AlquilaFacilPlatform.Locals.Domain.Repositories;
@@ -12,7 +14,9 @@ public class LocalCategoryRepository(AppDbContext context)
 {
     public Task<bool> ExistsLocalCategory(EALocalCategoryTypes type)
     {
-        return Context.Set<LocalCategory>().AnyAsync(x => x.Name == type.ToString());
+        var field = type.GetType().GetField(type.ToString());
+        var description = ((DescriptionAttribute)field!.GetCustomAttribute(typeof(DescriptionAttribute)))!.Description;
+        return Context.Set<LocalCategory>().AnyAsync(x => x.Name == description);
     }
 
     public async Task<IEnumerable<LocalCategory>> GetAllLocalCategories()

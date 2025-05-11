@@ -9,6 +9,6 @@ public static class SubscriptionResourceFromEntityAssembler
     public static SubscriptionResource ToResourceFromEntity(Subscription entity)
     {
         return new SubscriptionResource(entity.Id, entity.UserId, entity.PlanId,
-            entity.SubscriptionStatusId);
+            entity.SubscriptionStatusId, entity.VoucherImageUrl);
     }
 }

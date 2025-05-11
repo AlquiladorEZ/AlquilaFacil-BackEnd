@@ -1,3 +1,5 @@
+using AlquilaFacilPlatform.IAM.Domain.Model.ValueObjects;
+using AlquilaFacilPlatform.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using AlquilaFacilPlatform.Subscriptions.Domain.Model.Commands;
 using AlquilaFacilPlatform.Subscriptions.Domain.Model.Queries;
 using AlquilaFacilPlatform.Subscriptions.Domain.Services;
@@ -28,7 +30,8 @@ public class SubscriptionsController(
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetAllTutorials()
+    [AuthorizeRole(EUserRoles.Admin)]
+    public async Task<IActionResult> GetAllSubscriptions()
     {
         var getAllSubscriptionsQuery = new GetAllSubscriptionsQuery();
         var subscriptions = await subscriptionQueryServices.Handle(getAllSubscriptionsQuery);
@@ -45,11 +48,12 @@ public class SubscriptionsController(
         return Ok(resource);
     }
 
-    [HttpPut("{subscriptionId}/{subscriptionStatusId}")]
-    public async Task<IActionResult> UpdateSubscriptionStatus(int subscriptionId, int subscriptionStatusId)
+    [HttpPut("{subscriptionId}")]
+    [AuthorizeRole(EUserRoles.Admin)]
+    public async Task<IActionResult> ActiveSubscriptionStatus(int subscriptionId)
     {
-        var updateSubscriptionStatusCommand = new UpdateSubscriptionStatusCommand(subscriptionId, subscriptionStatusId);
-        var subscription = await subscriptionCommandService.Handle(updateSubscriptionStatusCommand);
+        var activeSubscriptionStatusCommand = new ActiveSubscriptionStatusCommand(subscriptionId);
+        var subscription = await subscriptionCommandService.Handle(activeSubscriptionStatusCommand);
         if (subscription == null) return NotFound();
         var resource = SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscription);
         return Ok(resource);

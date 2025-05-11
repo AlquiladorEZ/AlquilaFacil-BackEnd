@@ -9,21 +9,11 @@ using AlquilaFacilPlatform.Shared.Domain.Repositories;
 
 namespace AlquilaFacilPlatform.Profiles.Application.Internal.CommandServices;
 
-public class ProfileCommandService(IUserExternalService userExternalService,IProfileRepository profileRepository, IUnitOfWork unitOfWork) : IProfileCommandService
+public class ProfileCommandService(IProfileRepository profileRepository, IUnitOfWork unitOfWork) : IProfileCommandService
 {
     public async Task<Profile?> Handle(CreateProfileCommand command)
     {
         var profile = new Profile(command);
-        var userExists = userExternalService.UserExistsById(command.UserId);
-        if (!userExists)
-        {
-            throw new Exception("User does not exist");
-        }
-
-        if (command.Phone.Length < 9)
-        {
-            throw new Exception("Phone number must to be valid");
-        }
         await profileRepository.AddAsync(profile);
         await unitOfWork.CompleteAsync();
         return profile;
@@ -31,14 +21,12 @@ public class ProfileCommandService(IUserExternalService userExternalService,IPro
 
     public async Task<Profile> Handle(UpdateProfileCommand command)
     {
-        var profile = await profileRepository.FindByIdAsync(command.Id);
+        var profile = await profileRepository.FindByUserIdAsync(command.UserId);
         if (profile == null)
         {
-            throw new Exception("Profile with ID does not exist");
+            throw new Exception("Profile with User ID does not exist");
         }
-        var userId = profile.UserId;
         profile.Update(command);
-        profile.UserId = userId;
         await unitOfWork.CompleteAsync();
         return profile;
     }

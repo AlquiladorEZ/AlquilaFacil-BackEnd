@@ -4,12 +4,6 @@ using AlquilaFacilPlatform.Booking.Application.QueryServices;
 using AlquilaFacilPlatform.Booking.Domain.Repositories;
 using AlquilaFacilPlatform.Booking.Domain.Services;
 using AlquilaFacilPlatform.Booking.Infrastructure.Persistence.EFC.Repositories;
-using AlquilaFacilPlatform.Contacts.Application.Internal.CommandServices;
-using AlquilaFacilPlatform.Contacts.Application.Internal.OutboundServices;
-using AlquilaFacilPlatform.Contacts.Application.Internal.QueryService;
-using AlquilaFacilPlatform.Contacts.Domain.Repositories;
-using AlquilaFacilPlatform.Contacts.Domain.Services;
-using AlquilaFacilPlatform.Contacts.Infrastructure.Persistence.EFC.Repositories;
 using AlquilaFacilPlatform.IAM.Application.Internal.CommandServices;
 using AlquilaFacilPlatform.IAM.Application.Internal.OutboundServices;
 using AlquilaFacilPlatform.IAM.Application.Internal.QueryServices;
@@ -37,6 +31,8 @@ using AlquilaFacilPlatform.Notifications.Application.QueryServices;
 using AlquilaFacilPlatform.Notifications.Domain.Repositories;
 using AlquilaFacilPlatform.Notifications.Domain.Services;
 using AlquilaFacilPlatform.Notifications.Infrastructure.Persistence.EFC.Repositories;
+using AlquilaFacilPlatform.Notifications.Interfaces.ACL;
+using AlquilaFacilPlatform.Notifications.Interfaces.ACL.Services;
 using AlquilaFacilPlatform.Profiles.Application.Internal.CommandServices;
 using AlquilaFacilPlatform.Profiles.Application.Internal.OutboundServices;
 using AlquilaFacilPlatform.Profiles.Application.Internal.QueryServices;
@@ -166,6 +162,7 @@ builder.Services.AddScoped<IExternalUserWithSubscriptionService, ExternalUserWit
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddScoped<IPlanCommandService, PlanCommandService>();
 builder.Services.AddScoped<IPlanQueryService, PlanQueryService>();
+builder.Services.AddScoped<ISeedSubscriptionPlanCommandService, SeedSubscriptionPlanCommandService>();
 
 builder.Services.AddScoped<IInvoiceQueryService, InvoiceQueryService>();
 builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
@@ -195,20 +192,13 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IUserCommentExternalService, UserCommentExternalService>();
 
 
-// Contact Bounded Context Injection Configuration
-
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
-builder.Services.AddScoped<IContactCommandService, ContactCommandService>();
-builder.Services.AddScoped<IContactQueryService, ContactQueryService>();
-builder.Services.AddScoped<IExternalUserService, ExternalUserService>();
-
 // Booking Bounded Context Injection Configuration
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IReservationCommandService, ReservationCommandService>();
 builder.Services.AddScoped<IReservationQueryService, ReservationQueryService>();
 builder.Services.AddScoped<IReservationLocalExternalService, ReservationLocalExternalService>();
 builder.Services.AddScoped<IUserReservationExternalService, UserReservationExternalService>();
-
+builder.Services.AddScoped<INotificationReservationExternalService, NotificationReservationExternalService>();
 
 builder.Services.AddScoped<ISubscriptionStatusRepository, SubscriptionStatusRepository>();
 builder.Services.AddScoped<ISubscriptionStatusCommandService, SubscriptionStatusCommandService>();
@@ -219,16 +209,17 @@ builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
 builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
 builder.Services.AddScoped<IProfilesContextFacade, ProfilesContextFacade>();
-builder.Services.AddScoped<IUserExternalService, UserExternalService>();
 builder.Services.AddScoped<ISubscriptionExternalService, SubscriptionExternalService>();
 
 
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 builder.Services.AddScoped<ISeedUserRoleCommandService, SeedUserRoleCommandService>();
+builder.Services.AddScoped<ISeedAdminCommandService, SeedAdminCommandService>();
 
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
 builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
+builder.Services.AddScoped<INotificationsContextFacade, NotificationsContextFacade>();
 
 // IAM Bounded Context Injection Configuration
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
@@ -239,7 +230,7 @@ builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
-
+builder.Services.AddScoped<IProfilesUserExternalService, ProfilesUserExternalService>();
 
 builder.Services.AddScoped<IReportCommandService, ReportCommandService>();
 builder.Services.AddScoped<IReportQueryService, ReportQueryService>();
@@ -252,15 +243,18 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AppDbContext>();
     context.Database.EnsureCreated();
-
-    var planCommandService = services.GetRequiredService<IPlanCommandService>();
-    await planCommandService.Handle(new CreatePlanCommand("Plan Premium", "El plan premium te permitirá acceder a funcionalidades adicionales en la aplicación", 20));
+    
+    var planCommandService = services.GetRequiredService<ISeedSubscriptionPlanCommandService>();
+    await planCommandService.Handle(new SeedSubscriptionPlanCommand());
     
     var subscriptionStatusCommandService = services.GetRequiredService<ISubscriptionStatusCommandService>();
     await subscriptionStatusCommandService.Handle(new SeedSubscriptionStatusCommand());
     
     var userRoleCommandService = services.GetRequiredService<ISeedUserRoleCommandService>();
     await userRoleCommandService.Handle(new SeedUserRolesCommand());
+    
+    var adminCommandService = services.GetRequiredService<ISeedAdminCommandService>();
+    await adminCommandService.Handle(new SeedAdminCommand());
     
     var localCategoryTypeCommandService = services.GetRequiredService<ILocalCategoryCommandService>();
     await localCategoryTypeCommandService.Handle(new SeedLocalCategoriesCommand());

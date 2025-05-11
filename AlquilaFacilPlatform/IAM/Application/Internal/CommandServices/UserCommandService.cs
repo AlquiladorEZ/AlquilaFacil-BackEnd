@@ -15,6 +15,7 @@ public class UserCommandService(
     IUserRepository userRepository,
     ITokenService tokenService,
     IHashingService hashingService,
+    IProfilesUserExternalService profilesUserExternalService,
     IUnitOfWork unitOfWork)
     : IUserCommandService
 {
@@ -38,10 +39,14 @@ public class UserCommandService(
             !command.Password.Any(char.IsLower) || !command.Password.Any(c => symbols.Contains(c)))
             throw new Exception(
                 "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit and one special character");
+        
         if(!command.Email.Contains('@'))
             throw new Exception("Invalid email address");
+        
+        if (command.Phone.Length < 9)
+            throw new Exception("Phone number must to be valid");
 
-        if (userRepository.ExistsByUsername(command.Username))
+        if (await userRepository.ExistsByUsername(command.Username))
             throw new Exception($"Username {command.Username} is already taken");
 
         var hashedPassword = hashingService.HashPassword(command.Password);
@@ -49,14 +54,23 @@ public class UserCommandService(
         try
         {
             await userRepository.AddAsync(user);
-            await unitOfWork.CompleteAsync(); // Save the user first
+            await unitOfWork.CompleteAsync();
+            await profilesUserExternalService.CreateProfile(
+                command.Name,
+                command.FatherName,
+                command.MotherName,
+                command.DateOfBirth,
+                command.DocumentNumber,
+                command.Phone,
+                user.Id
+            );
         }
         catch (Exception e)
         {
-            throw new Exception($"An error occurred while creating user: {e.Message}");
+            var detailedMessage = e.InnerException?.Message ?? e.Message;
+            throw new Exception($"An error occurred while creating user: {detailedMessage}", e);
         }
-
-
+        
         return user;
     }
 
@@ -65,7 +79,7 @@ public class UserCommandService(
         var userToUpdate = await userRepository.FindByIdAsync(command.Id);
         if (userToUpdate == null)
             throw new Exception("User not found");
-        var userExists = userRepository.ExistsByUsername(command.Username);
+        var userExists = await userRepository.ExistsByUsername(command.Username);
         if (userExists)
         {
             throw new Exception("This username already exists");

@@ -9,22 +9,21 @@ public class SubscriptionContextFacade(ISubscriptionQueryServices subscriptionQu
 {
     
 
-    public async Task<IEnumerable<Subscription>> GetSubscriptionByUsersId(List<int> usersId)
+    public async Task<IEnumerable<Subscription>> GetSubscriptionByUserIdsList(List<int> userIdsList)
     {
-        var query = new GetSubscriptionsByUserIdQuery(usersId);
+        var query = new GetSubscriptionsByUserIdQuery(userIdsList);
         var subscriptions = await subscriptionQueryServices.Handle(query);  
         return subscriptions;
     }
 
-    public async Task<bool> IsUserSubscribed(int userId)
+    public async Task<string> GetSubscriptionStatusByUserId(int userId)
     {
         var query = new GetSubscriptionByUserIdQuery(userId);
         var subscription = await subscriptionQueryServices.Handle(query);
         if (subscription == null)
         {
-            throw new Exception("Subscription not found");
+            return "No subscription found";
         }
-        return subscription.SubscriptionStatusId == (int)ESubscriptionStatus.Active;
-
+        return ((ESubscriptionStatus)subscription.SubscriptionStatusId).ToString();
     }
 }

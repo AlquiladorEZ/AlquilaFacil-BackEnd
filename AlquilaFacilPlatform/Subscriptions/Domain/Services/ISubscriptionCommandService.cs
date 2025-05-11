@@ -7,5 +7,5 @@ public interface ISubscriptionCommandService
 {
     public Task<Subscription?> Handle(CreateSubscriptionCommand command);
 
-    public Task<Subscription?> Handle(UpdateSubscriptionStatusCommand command);
+    public Task<Subscription?> Handle(ActiveSubscriptionStatusCommand command);
 }

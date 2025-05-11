@@ -11,7 +11,9 @@ public static class CreateReservationCommandFromResourceAssembler
             resource.StartDate,
             resource.EndDate,
             resource.UserId,
-            resource.LocalId
+            resource.LocalId,
+            resource.price,
+            resource.voucherImageUrl
         );
     }
 }

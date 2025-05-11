@@ -37,4 +37,11 @@ public class LocalsContextFacade(ILocalQueryService localQueryService) : ILocals
         var isOwner = await localQueryService.Handle(query);
         return isOwner;
     }
+    
+    public async Task<int> GetLocalOwnerIdByLocalId(int localId)
+    {
+        var query = new GetLocalOwnerIdByLocalId(localId);
+        var ownerId = await localQueryService.Handle(query);
+        return ownerId;
+    }
 }

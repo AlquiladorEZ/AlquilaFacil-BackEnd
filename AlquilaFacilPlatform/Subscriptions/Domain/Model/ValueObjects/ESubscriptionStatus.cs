@@ -2,11 +2,8 @@ namespace AlquilaFacilPlatform.Subscriptions.Domain.Model.ValueObjects;
 
 public enum ESubscriptionStatus
 {
-    Active,
-    Pending,
-    Expired,
-    Cancelled,
-    Suspended,
-    Trial,
-    RenewalDue
+    Active = 1,
+    Pending = 2,
+    Expired = 3,
+    Cancelled = 4
 }

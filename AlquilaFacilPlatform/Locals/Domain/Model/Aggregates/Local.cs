@@ -65,7 +65,7 @@ public partial class Local
         UserId = command.UserId;
     }
 
-    public int Id { get; }
+    public int Id { get; set; }
     
     public string Features { get; set; }
     

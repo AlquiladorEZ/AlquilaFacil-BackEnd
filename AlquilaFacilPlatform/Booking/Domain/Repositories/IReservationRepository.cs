@@ -9,5 +9,5 @@ public interface IReservationRepository : IBaseRepository<Booking.Domain.Model.A
     Task<IEnumerable<Reservation>> GetReservationsByUserIdAsync(int userId);
     Task<IEnumerable<Reservation>>GetReservationByStartDateAsync(DateTime startDate);
     Task<IEnumerable<Reservation>> GetReservationByEndDateAsync(DateTime endDate);
-    Task<IEnumerable<Reservation>> GetReservationsByLocalIdAsync(List<int> localId);
+    Task<IEnumerable<Reservation>> GetReservationsByLocalIdsListAsync(List<int> localIdsList);
 }

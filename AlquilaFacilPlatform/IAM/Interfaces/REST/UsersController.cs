@@ -3,6 +3,7 @@ using AlquilaFacilPlatform.IAM.Application.Internal.CommandServices;
 using AlquilaFacilPlatform.IAM.Domain.Model.Aggregates;
 using AlquilaFacilPlatform.IAM.Domain.Model.Commands;
 using AlquilaFacilPlatform.IAM.Domain.Model.Queries;
+using AlquilaFacilPlatform.IAM.Domain.Model.ValueObjects;
 using AlquilaFacilPlatform.IAM.Domain.Services;
 using AlquilaFacilPlatform.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using AlquilaFacilPlatform.IAM.Interfaces.REST.Resources;
@@ -37,6 +38,7 @@ public class UsersController(
      * <param name="userId">The user id</param>
      * <returns>The user resource</returns>
      */
+    [AuthorizeRole(EUserRoles.Admin)]
     [HttpGet("{userId:int}")]
     public async Task<IActionResult> GetUserById(int userId)
     {
@@ -54,6 +56,7 @@ public class UsersController(
      * <returns>The user resources</returns>
      */
     [HttpGet]
+    [AuthorizeRole(EUserRoles.Admin)]
     public async Task<IActionResult> GetAllUsers()
     {
         var getAllUsersQuery = new GetAllUsersQuery();

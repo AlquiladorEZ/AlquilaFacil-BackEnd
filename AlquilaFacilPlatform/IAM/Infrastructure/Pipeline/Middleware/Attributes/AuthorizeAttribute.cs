@@ -21,7 +21,7 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 
         if (allowAnonymous)
         {
-            Console.WriteLine(" Skipping authorization");
+            Console.WriteLine("Skipping authorization");
             return;
         }
 

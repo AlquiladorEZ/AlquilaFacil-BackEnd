@@ -10,4 +10,5 @@ public interface ILocalsContextFacade
     Task<IEnumerable<Local?>> GetLocalsByUserId(int userId);
     
     Task<bool> IsLocalOwner(int userId, int localId);
+    Task<int> GetLocalOwnerIdByLocalId(int localId);
 }

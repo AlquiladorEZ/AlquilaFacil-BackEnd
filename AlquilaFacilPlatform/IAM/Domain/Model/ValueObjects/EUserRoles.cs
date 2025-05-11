@@ -2,8 +2,8 @@ namespace AlquilaFacilPlatform.IAM.Domain.Model.ValueObjects;
 
 public enum EUserRoles
 {
-    Owner,
-    User,
-    Admin,
-    Tester
+    Owner = 1,
+    User = 2,
+    Admin = 3,
+    Tester = 4
 }

@@ -13,16 +13,6 @@ namespace AlquilaFacilPlatform.Notifications.Interfaces.REST;
 [Route("api/v1/[controller]")]
 public class NotificationController(INotificationCommandService notificationCommandService, INotificationQueryService notificationQueryService) : ControllerBase
 {
-
-    [HttpPost]
-    public async Task<IActionResult> SaveNotification([FromBody] CreateNotificationResource createNotificationResource)
-    {
-        var command = CreateNotificationCommandFromResourceAssembler.ToCommandFromResource(createNotificationResource);
-        var notification = await notificationCommandService.Handle(command);
-        var notificationResource = NotificationResourceFromEntityAssembler.ToResourceFromEntity(notification);
-        return StatusCode(201, notificationResource);
-    }
-    
     [HttpGet("{userId}")]
     public async Task<IActionResult> GetNotificationsByUserId(int userId)
     {

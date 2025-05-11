@@ -19,4 +19,5 @@ RUN dotnet publish "AlquilaFacilPlatform.csproj" -c $BUILD_CONFIGURATION -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_ENVIRONMENT=Production
 ENTRYPOINT ["dotnet", "AlquilaFacilPlatform.dll"]
