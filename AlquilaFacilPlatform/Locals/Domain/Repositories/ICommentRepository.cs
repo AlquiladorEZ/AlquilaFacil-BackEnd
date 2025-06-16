@@ -6,6 +6,6 @@ using AlquilaFacilPlatform.Shared.Domain.Repositories;
 namespace AlquilaFacilPlatform.Locals.Domain.Repositories;
 
 public interface ICommentRepository : IBaseRepository<Comment>
-{
-        Task<IEnumerable<Comment>> GetAllCommentsByLocalId(int localId);
+{ 
+    Task<IEnumerable<Comment>> GetAllCommentsByLocalId(int localId);
 }

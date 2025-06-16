@@ -4,7 +4,7 @@ using AlquilaFacilPlatform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using AlquilaFacilPlatform.Shared.Infrastructure.Persistence.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace AlquilaFacilPlatform.Locals.Infraestructure.Persistence.EFC.Repositories;
+namespace AlquilaFacilPlatform.Locals.Infrastructure.Persistence.EFC.Repositories;
 
 public class ReportRepository(AppDbContext context) : BaseRepository<Report>(context), IReportRepository
 {

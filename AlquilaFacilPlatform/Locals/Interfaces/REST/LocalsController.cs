@@ -67,10 +67,10 @@ public class LocalsController(ILocalCommandService localCommandService, ILocalQu
     }
     
     [HttpGet("get-all-districts")]
-    public IActionResult GetAllDistricts()
+    public async Task<IActionResult> GetAllDistricts()
     {
         var getAllLocalDistrictsQuery = new GetAllLocalDistrictsQuery();
-        var districts = localQueryService.Handle(getAllLocalDistrictsQuery);
+        var districts = await localQueryService.Handle(getAllLocalDistrictsQuery);
         return Ok(districts);
     }
     
