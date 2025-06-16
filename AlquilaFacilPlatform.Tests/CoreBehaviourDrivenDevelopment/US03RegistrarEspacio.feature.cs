@@ -28,7 +28,7 @@ namespace AlquilaFacilPlatform.Tests.CoreBehaviourDrivenDevelopment
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "US03RegistrarEspacios.feature"
+#line 1 "US03RegistrarEspacio.feature"
 #line hidden
         
         public RegistrarEspacioFeature(RegistrarEspacioFeature.FixtureData fixtureData, AlquilaFacilPlatform_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
