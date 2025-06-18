@@ -23,7 +23,7 @@ using AlquilaFacilPlatform.Locals.Application.Internal.QueryServices;
 using AlquilaFacilPlatform.Locals.Domain.Model.Commands;
 using AlquilaFacilPlatform.Locals.Domain.Repositories;
 using AlquilaFacilPlatform.Locals.Domain.Services;
-using AlquilaFacilPlatform.Locals.Infraestructure.Persistence.EFC.Repositories;
+using AlquilaFacilPlatform.Locals.Infrastructure.Persistence.EFC.Repositories;
 using AlquilaFacilPlatform.Locals.Interfaces.ACL;
 using AlquilaFacilPlatform.Locals.Interfaces.ACL.Services;
 using AlquilaFacilPlatform.Notifications.Application.CommandServices;
