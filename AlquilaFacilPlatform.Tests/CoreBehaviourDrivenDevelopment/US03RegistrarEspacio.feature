@@ -37,7 +37,6 @@ Feature: Registrar espacio
       | País             | Perú                           |
       | Ciudad           | Lima                           |
       | Precio           | 1500                           |
-      | Foto             | www.imagen1.jpg                |
       | Descripción      | Espacio luminoso y cómodo      |
       | Categoría        | Oficina                        |
       | Características  | Wi-Fi, Aire acondicionado      |
@@ -56,7 +55,6 @@ Feature: Registrar espacio
       | País             | Perú                           |
       | Ciudad           | Lima                           |
       | Precio           | 1500                           |
-      | Foto             | www.imagen1.jpg               |
       | Descripción      | Espacio luminoso y cómodo      |
       | Categoría        | Oficina                        |
       | Características  | Wi-Fi, Aire acondicionado      |
