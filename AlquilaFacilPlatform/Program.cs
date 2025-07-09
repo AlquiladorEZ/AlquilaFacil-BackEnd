@@ -26,6 +26,10 @@ using AlquilaFacilPlatform.Locals.Domain.Services;
 using AlquilaFacilPlatform.Locals.Infrastructure.Persistence.EFC.Repositories;
 using AlquilaFacilPlatform.Locals.Interfaces.ACL;
 using AlquilaFacilPlatform.Locals.Interfaces.ACL.Services;
+using AlquilaFacilPlatform.Metrics.Application.Internal.CommandServices;
+using AlquilaFacilPlatform.Metrics.Domain.Repositories;
+using AlquilaFacilPlatform.Metrics.Domain.Service;
+using AlquilaFacilPlatform.Metrics.Infrastructure.Persistence.EFC.Repositories;
 using AlquilaFacilPlatform.Notifications.Application.CommandServices;
 using AlquilaFacilPlatform.Notifications.Application.QueryServices;
 using AlquilaFacilPlatform.Notifications.Domain.Repositories;
@@ -236,6 +240,11 @@ builder.Services.AddScoped<IReportCommandService, ReportCommandService>();
 builder.Services.AddScoped<IReportQueryService, ReportQueryService>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 
+// Metrics Bounded Context Injection Configuration
+
+builder.Services.AddScoped<IMetricRepository, MetricRepository>();
+builder.Services.AddScoped<IMetricCommandService, MetricCommandService>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -259,8 +268,6 @@ using (var scope = app.Services.CreateScope())
     var localCategoryTypeCommandService = services.GetRequiredService<ILocalCategoryCommandService>();
     await localCategoryTypeCommandService.Handle(new SeedLocalCategoriesCommand());
 }
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
