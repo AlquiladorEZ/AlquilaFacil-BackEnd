@@ -6,6 +6,7 @@ using AlquilaFacilPlatform.IAM.Domain.Model.Aggregates;
 using AlquilaFacilPlatform.IAM.Domain.Model.Entities;
 using AlquilaFacilPlatform.Locals.Domain.Model.Aggregates;
 using AlquilaFacilPlatform.Locals.Domain.Model.Entities;
+using AlquilaFacilPlatform.Metrics.Domain.Model.Entities;
 using AlquilaFacilPlatform.Notifications.Domain.Models.Aggregates;
 using AlquilaFacilPlatform.Profiles.Domain.Model.Aggregates;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
@@ -221,6 +222,15 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Notification>().Property(n => n.Description).IsRequired();
         
         builder.Entity<User>().HasMany<Notification>().WithOne().HasForeignKey(n => n.UserId);
+        
+        // Metrics Context
+        builder.Entity<Metric>().HasKey(m => m.Id);
+        builder.Entity<Metric>().Property(m => m.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Metric>().Property(m => m.EventName).IsRequired();
+        builder.Entity<Metric>().Property(m => m.Timestamp).IsRequired();
+        builder.Entity<Metric>().Property(m => m.SessionId).IsRequired();
+        
+        builder.Entity<User>().HasMany<Metric>().WithOne().HasForeignKey(m => m.UserId);
         
         
             

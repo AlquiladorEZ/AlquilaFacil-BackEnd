@@ -18,7 +18,7 @@ public class LocalsController(ILocalCommandService localCommandService, ILocalQu
     [HttpPost]
     public async Task<IActionResult> CreateLocal(CreateLocalResource resource)
     {
-        var createLocalCommand = CreateLocalCommandFromResourceAssembler.ToCommandFromResources(resource);
+        var createLocalCommand = CreateLocalCommandFromResourceAssembler.ToCommandFromResource(resource);
         var local = await localCommandService.Handle(createLocalCommand);
         if (local is null) return BadRequest();
         var localResource = LocalResourceFromEntityAssembler.ToResourceFromEntity(local);

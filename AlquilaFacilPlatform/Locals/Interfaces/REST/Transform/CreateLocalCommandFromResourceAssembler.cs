@@ -5,7 +5,7 @@ namespace AlquilaFacilPlatform.Locals.Interfaces.REST.Transform;
 
 public static class CreateLocalCommandFromResourceAssembler
 {
-    public static CreateLocalCommand ToCommandFromResources(CreateLocalResource resource)
+    public static CreateLocalCommand ToCommandFromResource(CreateLocalResource resource)
     {
         return new CreateLocalCommand(
             resource.LocalName,
